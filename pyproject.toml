@@ -1,0 +1,17 @@
+[project]
+name = "cv-mcp"
+version = "0.1.0"
+authors = [{ name = "Piotr Wislowski" }]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+description = "Reproducible, evidence-based CV and cover-letter builds"
+requires-python = ">=3.11"
+dependencies = ["typst>=0.13,<1", "pymupdf>=1.25,<2", "PyYAML>=6,<7"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

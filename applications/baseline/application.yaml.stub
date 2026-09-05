@@ -1,0 +1,29 @@
+# Fictional layout sample. Copy to application.yaml before building.
+notion_id: null
+vacancy_url: null
+status: draft
+paper: a4
+max_cv_pages: 2
+sections:
+  - experience
+  - projects
+  - skills
+  - education
+achievement_ids:
+  - example-reporting
+project_ids:
+  - example-project
+overrides: {}
+letter:
+  is_sample: true
+  date: ''
+  recipient: Hiring Manager
+  company: '[Company]'
+  role: '[Role]'
+  paragraphs:
+    - >-
+      I am applying for [Role] at [Company]. [Explain your interest using
+      specific details from the vacancy.]
+    - >-
+      [Describe a verified achievement relevant to the role and explain
+      the contribution you would make.]

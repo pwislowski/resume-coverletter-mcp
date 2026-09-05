@@ -1,0 +1,18 @@
+resources/
+.DS_Store
+.venv/
+__pycache__/
+build/
+.env
+
+.env.*
+.pytest_cache/
+
+# Local reference material and private career data stay on disk.
+/ai-job-search/
+/profile/*
+!/profile/career.yaml.stub
+/applications/*
+!/applications/baseline/
+/applications/baseline/*
+!/applications/baseline/application.yaml.stub

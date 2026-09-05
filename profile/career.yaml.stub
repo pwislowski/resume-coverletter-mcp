@@ -1,0 +1,32 @@
+# Fictional sample. Copy to career.yaml and replace with your own evidence.
+provenance: Fictional examples for setup and tests; not real career claims.
+review_notes:
+  - Replace all sample content and verify every claim before submission.
+name: Alex Example
+phone: '+44 0000 000000'
+email: alex@example.com
+linkedin: ''
+website: example.com
+github: ''
+experience:
+  - id: example-employer
+    title: Analyst
+    company: Example Company
+    location: London, UK
+    dates: 2024 – 2025
+    achievements:
+      - id: example-reporting
+        text: Created a reporting workflow for a sample dataset.
+projects:
+  - id: example-project
+    name: Example Analysis
+    url: https://example.com/project
+    text: Analysed a public sample dataset and documented the results.
+skills:
+  - name: Technical
+    text: Python, SQL
+awards: []
+education:
+  - degree: Example Degree
+    institution: Example University
+    dates: 2021 – 2024
