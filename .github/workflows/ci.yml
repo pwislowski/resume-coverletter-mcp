@@ -31,7 +31,12 @@ jobs:
       - run: uv sync --locked
       # Tests intentionally use only the tracked fictional fixtures in stubs/.
       # Private profile, applications, fonts and build output are never required in CI.
-      - run: just check
+      - name: Run quality checks
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+          uv run ty check
+          uv run pytest
 
   compose-config:
     runs-on: ubuntu-latest
