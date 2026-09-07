@@ -13,7 +13,9 @@ services:
       CV_MCP_DOWNLOAD_BASE_URL: ${CV_MCP_DOWNLOAD_BASE_URL:?set download URL}
       CV_MCP_DOWNLOAD_SIGNING_SECRET: ${CV_MCP_DOWNLOAD_SIGNING_SECRET:?set download secret}
     volumes:
-      - ${CV_MCP_DATA_DIR:-./data}:/data
+      # Dokploy persists ../files across Git deployments. Set
+      # CV_MCP_DATA_DIR=./data locally when using the checked-out data folder.
+      - ${CV_MCP_DATA_DIR:-../files/cv-mcp}:/data
     networks: [private]
     security_opt: [no-new-privileges:true]
     cap_drop: [ALL]
