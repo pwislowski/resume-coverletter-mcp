@@ -3,6 +3,9 @@ resources/
 .venv/
 __pycache__/
 build/
+.data/
+data/*
+!data/.gitkeep
 .env
 
 .env.*
@@ -11,8 +14,4 @@ build/
 # Local reference material and private career data stay on disk.
 /ai-job-search/
 /profile/*
-!/profile/career.yaml.stub
 /applications/*
-!/applications/baseline/
-/applications/baseline/*
-!/applications/baseline/application.yaml.stub

@@ -7,11 +7,35 @@ license = "MIT"
 license-files = ["LICENSE"]
 description = "Reproducible, evidence-based CV and cover-letter builds"
 requires-python = ">=3.11"
-dependencies = ["typst>=0.13,<1", "pymupdf>=1.25,<2", "PyYAML>=6,<7"]
+dependencies = [
+    "typst>=0.13,<1",
+    "pymupdf>=1.25,<2",
+    "PyYAML>=6,<7",
+    "typer>=0.16,<1",
+    "mcp>=2,<3",
+    "pydantic-settings>=2.15.0",
+    "structlog>=25,<26",
+]
+
+[project.scripts]
+cv-mcp = "cv_mcp.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [dependency-groups]
-dev = ["pytest>=8,<10"]
+dev = [
+    "pytest>=8,<10",
+    "ruff>=0.16.6",
+    "ty>=0.0.78",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+filterwarnings = [
+    "ignore:builtin type SwigPyPacked has no __module__ attribute:DeprecationWarning",
+    "ignore:builtin type SwigPyObject has no __module__ attribute:DeprecationWarning",
+    "ignore:builtin type swigvarlink has no __module__ attribute:DeprecationWarning",
+]

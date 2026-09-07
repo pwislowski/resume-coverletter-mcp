@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  UV_VERSION: 0.12.3
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: ${{ env.UV_VERSION }}
+      - run: uv sync --locked
+      - run: just check
+
+  compose-config:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Validate Compose interpolation
+        env:
+          CV_MCP_DOWNLOAD_BASE_URL: https://cv.example.test
+          CV_MCP_DOWNLOAD_SIGNING_SECRET: ci-placeholder
+          CONTROL_PLANE_ORGANIZATION_ID: org_ci_placeholder
+          CONTROL_PLANE_TUNNEL_ID: tunnel_0123456789abcdef0123456789abcdef
+          CONTROL_PLANE_API_KEY: ci-placeholder
+        run: docker compose config --quiet

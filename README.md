@@ -9,14 +9,15 @@ Reproducible, evidence-based CV and cover-letter builds with private local caree
 Install [uv](https://docs.astral.sh/uv/). On a fresh checkout, create local inputs from the fictional stubs (skip this if you already have personal inputs):
 
 ```sh
-cp -n profile/career.yaml.stub profile/career.yaml
-cp -n applications/baseline/application.yaml.stub applications/baseline/application.yaml
+cp -n stubs/career.yaml profile/career.yaml
+mkdir -p applications/baseline
+cp -n stubs/application.yaml applications/baseline/application.yaml
 ```
 
 Replace the fictional evidence with your own before tailoring applications, then run:
 
 ```sh
-uv run python scripts/build.py baseline
+uv run cv-mcp build baseline
 # Or, with just installed:
 just build
 just check
@@ -50,12 +51,12 @@ Existing `resources/` and `ai-job-search/` are retained as reference material. R
 ## Public code and private deployment
 
 The public repository contains the build code, templates, tests, lockfile and fictional
-`profile/career.yaml.stub` and `applications/baseline/application.yaml.stub` files.
-Tests load only these stubs; `just check` (or `uv run pytest`) needs no personal inputs.
+`stubs/career.yaml` and `stubs/application.yaml` files. Tests load only these stubs;
+`just check` (or `uv run pytest`) needs no personal inputs.
 
 Actual files under `profile/` and `applications/`, including submission releases, are
 ignored, as are `build/`, `resources/` and `ai-job-search/`. Existing local files are
-preserved. Stubs are the only exceptions within the private input directories.
+preserved. Public stubs live separately under `stubs/`.
 Never put personal evidence into a stub.
 
 Maintain a separate private deployment repository for your career inputs, application
